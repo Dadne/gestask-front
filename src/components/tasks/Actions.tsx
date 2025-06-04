@@ -1,7 +1,15 @@
-
-import React, { useState } from 'react';
-import { Button, IconButton, Menu, MenuItem } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import React, { useState } from "react";
+import {
+  Button,
+  IconButton,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 interface ActionsMenu {
   id: number;
@@ -9,11 +17,7 @@ interface ActionsMenu {
   onComplete: (id: any) => void;
 }
 
-const ActionsMenu: React.FC<ActionsMenu> = ({
-  id,
-  onAssing,
-  onComplete,
-}) => {
+const ActionsMenu: React.FC<ActionsMenu> = ({ id, onAssing, onComplete }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -36,7 +40,7 @@ const ActionsMenu: React.FC<ActionsMenu> = ({
         aria-label="more"
         id={`actions-button-${id}`}
         aria-controls={open ? `actions-menu-${id}` : undefined}
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         aria-haspopup="true"
         onClick={handleClick}
         sx={{ p: 0.5 }}
@@ -48,15 +52,44 @@ const ActionsMenu: React.FC<ActionsMenu> = ({
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: 48 * 4.5,
-            width: '100px',
-          },
-        }}
       >
-        <MenuItem onClick={() => handleMenuItemClick(onAssing)}> <Button>Asignar a</Button></MenuItem>
-        <MenuItem onClick={() => handleMenuItemClick(onComplete)}> <Button>Completar</Button></MenuItem>
+       
+         <MenuItem
+          onClick={() => handleMenuItemClick(onAssing)}
+          sx={{
+            backgroundColor: "primary.light",
+            color: "success.contrastText",
+            "& .MuiListItemIcon-root": {
+              color: "success.contrastText",
+            },
+            "&:hover": {
+              backgroundColor: "primary.dark",
+            },
+          }}
+        >
+          <ListItemIcon>
+          <AssignmentIndIcon fontSize="small" /> 
+          </ListItemIcon>
+          <ListItemText primary="Asignar a" />
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleMenuItemClick(onComplete)}
+          sx={{
+            backgroundColor: "success.light",
+            color: "success.contrastText",
+            "& .MuiListItemIcon-root": {
+              color: "success.contrastText",
+            },
+            "&:hover": {
+              backgroundColor: "success.dark",
+            },
+          }}
+        >
+          <ListItemIcon>
+            <CheckCircleIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Completar" />
+        </MenuItem>
       </Menu>
     </>
   );

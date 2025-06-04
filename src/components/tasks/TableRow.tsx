@@ -83,12 +83,12 @@ const TaskTableRow: React.FC<TaskTableRowProps> = ({
 
   const renderStatus = (status: string) => {
     switch (status) {
-      case "created":
-        return <CreatedStatus>{status}</CreatedStatus>;
-      case "active":
-        return <ActiveStatus>{status}</ActiveStatus>;
-      case "closed":
-        return <ClosedStatus>{status}</ClosedStatus>;
+      case "CREATED":
+        return <CreatedStatus>Creada</CreatedStatus>;
+      case "IN_PROGRESS":
+        return <ActiveStatus>En Progreso</ActiveStatus>;
+      case "COMPLETED":
+        return <ClosedStatus>Completada</ClosedStatus>;
       default:
         return <ActiveStatus>{status}</ActiveStatus>;
     }

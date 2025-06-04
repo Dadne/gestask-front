@@ -35,6 +35,7 @@ const RegisterForm: React.FC = () => {
           });
       })
       .catch((error) => {
+        alert("Error al registrarse. Por favor, inténtalo de nuevo.");
         console.error("Error al registrar", error);
       });
   };
