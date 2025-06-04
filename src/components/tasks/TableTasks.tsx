@@ -16,6 +16,7 @@ import TaskTableHead from "./TableHead";
 import TaskTableRow from "./TableRow";
 import { useAuth } from "../../context/AuthContext";
 import { getTasksList } from "../../services/AppServices";
+import NewTaskModal from "./NewTaskModal";
 
 const TableTasks: React.FC = () => {
   const { token } = useAuth();
@@ -77,7 +78,7 @@ const TableTasks: React.FC = () => {
             Nueva Tarea
           </Button>
         </Box>
-        {/* <NewTaskModal open={openModal} onClose={handleCloseModal} /> */}
+         <NewTaskModal open={openModal} onClose={handleCloseModal} setRefresh={setRefresh} />
         <Paper sx={{ width: "100%", mb: 2, borderRadius: 2 }}>
           <TableContainer>
             <Table aria-labelledby="tableTitle">

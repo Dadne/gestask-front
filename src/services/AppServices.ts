@@ -1,10 +1,6 @@
-import axios, {
-  AxiosInstance,
-} from "axios";
+import axios, { AxiosInstance } from "axios";
 
-const API_BASE_URL =
-  process.env.API_URL || "http://localhost:3001/api";
-
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 const apiService: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
@@ -36,6 +32,7 @@ export const assignTask = async (
     throw error;
   }
 };
+
 export const completeTask = async (taskId: string, token: any) => {
   try {
     const response = await apiService.put(
@@ -53,6 +50,37 @@ export const completeTask = async (taskId: string, token: any) => {
     throw error;
   }
 };
+
+export const createTask = async (
+  title: string,
+  description: string,
+  assignedTo: string,
+  token: any
+) => {
+  console.log(token);
+  try {
+    const response = await apiService.post(
+      "/tasks",
+      {
+        title,
+        description,
+        assignedTo,
+        expirationDate: "2026-03-21T16:40:27.408Z",
+
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error en createTask:", error);
+    throw error;
+  }
+};
+
 export const getUsersList = async (token: any) => {
   try {
     const response = await apiService.get(`/users`, {
